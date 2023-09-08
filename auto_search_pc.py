@@ -1,6 +1,9 @@
 # Just run the code and the program will open the brower and starts searching.
 # Don't Forget to update the path of the browser.
 
+# For mobile rewards, run the code again, and before it starts searching,
+# press Ctrl+Shift+I (to open inspect element), and then press Ctrl+Shift+M (to toggle the device mode)
+
 
 # Import the necessary libraries
 import pyautogui as auto  # Import the pyautogui library for automating GUI interactions
@@ -8,8 +11,11 @@ import time  # Import the time library for adding delays
 import random  # Import the random library for generating random choices
 import os  # Import the os library for interacting with the operating system
 
-# Define the path
-browser_path = r'"Replace this with path"'
+
+# Define the path to the Microsoft Edge
+# Put the path in a file called path.txt in the same directory.
+path_file = open('path.txt', 'r')
+browser_path = path_file.read()
 
 # Open Microsoft Edge Canary using the specified shortcut
 os.startfile(browser_path)
