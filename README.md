@@ -6,7 +6,12 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 ⚠️ Your Edge browser should be located at the following path: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe". <Br>
 This path is the default for most PCs, so it should not be a problem. If it is not located there, you can edit the code accordingly. <Br>
 ⚠️ Don't use the PC while the program is running. <Br> 
-⚠️ You might have a difficult time stopping the program mid-way. Don't worry about it. It'll soon stop <Br> <Br>
+⚠️ You might have a difficult time stopping the program mid-way. Don't worry about it. It'll soon stop <Br>
+⚠️ This code is provided for educational purposes only. <Br>
+It serves as a demonstration of automating repetitive tasks using Python and tkinter. <Br>
+Please use this code responsibly and in accordance with applicable laws and guidelines. <Br>
+The author and contributors are not responsible for any misuse of this code. <Br>
+Feel free to modify and distribute it while adhering to the license terms. <Br> <Br>
 
 1. Use the GUI for easiest method.
 2. Use auto_search_full_auto_toggle.py for non GUI method. It switches between PC and Mobile automatically.
