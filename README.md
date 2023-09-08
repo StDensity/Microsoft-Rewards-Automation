@@ -8,4 +8,5 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 
 Basically just use the first or second method. 
 Any improvements or bugs, let me know. 
+If you are new and don't know how to use it. let me know.
 Good Day :)
