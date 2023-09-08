@@ -58,8 +58,8 @@ auto.hotkey('ctrl', 'shift', 'i')
 time.sleep(inspect_element_delay)
 
 # Loop to automate a series of actions
-for i in range(0, 6):
-    if i == 3:
+for i in range(0, 70):
+    if i == 35:
         # We are opening and closing inspect element so that the inspect element tab will get focus.
         auto.hotkey('ctrl', 'shift', 'i')
         time.sleep(inspect_element_delay)
