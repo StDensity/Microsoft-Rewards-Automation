@@ -4,7 +4,8 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 # Important
 ⚠️ To ensure that this works, the browser window should be open in full screen. If it isn't in full screen, please maximize it. <Br>
 ⚠️ Your Edge browser should be located at the following path: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe". <Br>
-This path is the default for most PCs, so it should not be a problem. If it is not located there, you can edit the code accordingly.
+This path is the default for most PCs, so it should not be a problem. If it is not located there, you can edit the code accordingly. <Br>
+⚠️ Don't use the PC while the program is running. <Br> <Br>
 
 1. Use the GUI for easiest method.
 2. Use auto_search_full_auto_toggle.py for non GUI method. It switches between PC and Mobile automatically.
