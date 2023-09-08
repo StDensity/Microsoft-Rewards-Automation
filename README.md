@@ -6,6 +6,6 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 2. Use auto_search_full_auto_toggle.py for non GUI method. It switches between PC and Mobile automatically.
 3. auto_search_full_manual_toggle.py for non GUI manual PC and Mobile switch.
 
-Bascally just use the 1 or second method. 
+Bascally just use the first or second method. 
 Any improvements or bugs, let me know. 
 Good Day :)
