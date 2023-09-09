@@ -121,10 +121,12 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         "Bias-Variance Tradeoff", "Feature Engineering", "Convolutional Neural Network",
         "Recurrent Neural Network", "Random Forest", "Gradient Descent"
     ]
- #Test
+
     # Opens Inspect Elements
     auto.hotkey('ctrl', 'shift', 'i')
     time.sleep(inspect_element_delay)
+    # This is the bring back focus to the browser from inspect elements
+    auto.hotkey('alt')
 
     # Loop to automate a series of actions
     for i in range(0, total_searches):
@@ -134,10 +136,12 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
             time.sleep(inspect_element_delay)
             auto.hotkey('ctrl', 'shift', 'i')
             time.sleep(inspect_element_delay)
-            auto.hotkey('ctrl', 'shift', 'M')
+            auto.hotkey('ctrl', 'shift', 'm')
             time.sleep(inspect_element_delay)
-        # Click at the search bar. If it isn't then update the x and y.
-        auto.click(962, 51, clicks=1, button='left')
+            # This is the bring back focus to the browser from inspect elements
+            auto.hotkey('alt')
+        # To bring focus to the search bar.
+        auto.hotkey('ctrl', 'l')
 
         # Generate a random question by choosing a random prefix and word
         auto.typewrite(random.choice(prefix) + " " + random.choice(words))
@@ -145,7 +149,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         time.sleep(search_delay)  # Pause for the specified search delay
 
     # To go to the Rewards site.
-    auto.click(962, 51, clicks=1, button='left')
+    auto.hotkey('ctrl', 'l')
     auto.typewrite("https://rewards.bing.com/")
     auto.press("enter")
 
