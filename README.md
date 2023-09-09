@@ -2,7 +2,7 @@
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and Mobile)
 
 # Note
-If your pc takes time to respond or the network is slow you can always change the wait time accordingly. 
+If your pc takes time to respond or the network is slow you can always change the wait time accordingly. <Br>
 ⚠️ Don't use the PC while the program is running. <Br> 
 ⚠️ You might have a difficult time stopping the program mid-way. Don't worry about it. It'll soon stop <Br>
 ⚠️ This code is provided for educational purposes only. <Br>
