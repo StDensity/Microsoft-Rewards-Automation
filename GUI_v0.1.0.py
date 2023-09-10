@@ -38,9 +38,9 @@ def close_app():
 
 
 # Default delay values
-browser_open_delay = 2
-inspect_element_delay = 1
-search_delay = 1
+browser_open_delay = 5
+inspect_element_delay = 5
+search_delay = 2
 total_searches = 70  # Initialize total_searches variable
 
 # Create and configure entry fields for delay values
