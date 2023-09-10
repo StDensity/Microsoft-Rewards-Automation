@@ -156,6 +156,8 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # Closes Inspect Elements
     auto.hotkey('ctrl', 'shift', 'i')
 
+    # Re-enable Start Button
+    start_button['state'] = 'enabled'
 
 # Run the Tkinter main loop
 root.mainloop()
