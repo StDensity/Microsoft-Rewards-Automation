@@ -1,9 +1,11 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk
 import pyautogui as auto
 import time
 import random
 import os
+import pygetwindow as gw
 
 # Create the main application window
 root = tk.Tk()
@@ -35,6 +37,18 @@ def start_search():
 # Function to close the application
 def close_app():
     root.destroy()
+
+
+def show_alert(title, message):
+    messagebox.showinfo(title, message)
+
+
+def check_focus(required_window_id):
+    active_window_list_2 = gw.getWindowsWithTitle(gw.getActiveWindow().title)
+    current_browser = active_window_list_2[0]._hWnd
+    if required_window_id != current_browser:
+        show_alert("Error", "Browser focus lost. Exit(0)")
+        exit(0)
 
 
 # Default delay values
@@ -96,6 +110,10 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # Pause the script execution for the specified browser open delay
     time.sleep(browser_open_delay)
 
+    # Getting the ID of the active window.
+    active_window_list = gw.getWindowsWithTitle(gw.getActiveWindow().title)
+    required_window_id = active_window_list[0]._hWnd
+
     # Define a list of prefixes to be used in generating questions
     prefix = [
         "What is", "Define", "Explain", "Meaning of",
@@ -122,14 +140,21 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         "Recurrent Neural Network", "Random Forest", "Gradient Descent"
     ]
 
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
+
     # Opens Inspect Elements
     auto.hotkey('ctrl', 'shift', 'i')
     time.sleep(inspect_element_delay)
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
     # This is the bring back focus to the browser from inspect elements
     auto.hotkey('alt')
 
     # Loop to automate a series of actions
     for i in range(0, total_searches):
+        # To check whether the browser has lost focus or not.
+        check_focus(required_window_id)
         if i == total_searches // 2:
             # Toggles device mode
             auto.hotkey('ctrl', 'shift', 'i')
@@ -148,6 +173,9 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         auto.press("enter")  # Press the "enter" key
         time.sleep(search_delay)  # Pause for the specified search delay
 
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
+
     # To go to the Rewards site.
     auto.hotkey('ctrl', 'l')
     auto.typewrite("https://rewards.bing.com/")
@@ -158,6 +186,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
 
     # Re-enable Start Button
     start_button['state'] = 'enabled'
+
 
 # Run the Tkinter main loop
 root.mainloop()
