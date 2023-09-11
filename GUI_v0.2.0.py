@@ -201,6 +201,9 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # Re-enable Start Button
     start_button['state'] = 'enabled'
 
+    # Disable Browser Close Check box
+    browser_close_checkbox.config(state="enabled")
+
 
 # Run the Tkinter main loop
 root.mainloop()
