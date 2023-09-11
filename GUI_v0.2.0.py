@@ -1,9 +1,11 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk
 import pyautogui as auto
 import time
 import random
 import os
+import pygetwindow as gw
 
 # Create the main application window
 root = tk.Tk()
@@ -28,6 +30,9 @@ def start_search():
     # Disable the Start button to prevent multiple clicks
     start_button['state'] = 'disabled'
 
+    # Disable Browser Close Check box
+    browser_close_checkbox.config(state="disabled")
+
     # Call the execute_search function
     execute_search(total_searches, browser_open_delay, inspect_element_delay, search_delay)
 
@@ -35,6 +40,22 @@ def start_search():
 # Function to close the application
 def close_app():
     root.destroy()
+    exit(0)
+
+def close_browser():
+    # ctrl + shift + w closes the active browser window
+    auto.hotkey('ctrl', 'shift', 'w')
+
+def show_alert(title, message):
+    messagebox.showinfo(title, message)
+
+
+def check_focus(required_window_id):
+    active_window_list_2 = gw.getWindowsWithTitle(gw.getActiveWindow().title)
+    current_browser = active_window_list_2[0]._hWnd
+    if required_window_id != current_browser:
+        show_alert("Error", "Browser focus lost. Exit(0)")
+        exit(0)
 
 
 # Default delay values
@@ -71,14 +92,19 @@ total_searches_entry.insert(0, str(total_searches))  # Set default value
 
 # Create and configure the Start button
 start_button = ttk.Button(frame, text="Start Search", command=start_search)
-start_button.grid(row=4, columnspan=2, pady=20)
+start_button.grid(row=4, columnspan=2, pady=10)
 
 # Create and configure the Close button
 close_button = ttk.Button(frame, text="Close", command=close_app)
 close_button.grid(row=5, columnspan=2, pady=10)
 
+# Browser close check box.
+browser_close_var = tk.IntVar()
+browser_close_checkbox = ttk.Checkbutton(frame, text="Close browser on completion", variable=browser_close_var)
+browser_close_checkbox.grid(row=6, columnspan=2, padx=10)
+
 note_label = ttk.Label(frame, text="Note: The total number of searches will be halved for both PC and mobile searches.")
-note_label.grid(row=6, columnspan=2, pady=10)
+note_label.grid(row=7, columnspan=2, pady=10)
 
 
 # Function to execute the search
@@ -95,6 +121,10 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
 
     # Pause the script execution for the specified browser open delay
     time.sleep(browser_open_delay)
+
+    # Getting the ID of the active window.
+    active_window_list = gw.getWindowsWithTitle(gw.getActiveWindow().title)
+    required_window_id = active_window_list[0]._hWnd
 
     # Define a list of prefixes to be used in generating questions
     prefix = [
@@ -115,21 +145,28 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         "K-means", "FNN", "Transfer Learning", "AutoML",
         "Hyperparameter Optimization", "Reinforcement Learning",
         "Deep Learning", "Regression Analysis", "Clustering",
-        "Dimensionality Reduction", "Backpropagation", "Overfitting",
-        "Underfitting", "Cross-Validation", "Natural Language Generation",
+        "Dimensionality Reduction", "Backpropagation", "Over fitting",
+        "Under fitting", "Cross-Validation", "Natural Language Generation",
         "Supervised Learning", "Unsupervised Learning", "Neural Network Architecture",
         "Bias-Variance Tradeoff", "Feature Engineering", "Convolutional Neural Network",
         "Recurrent Neural Network", "Random Forest", "Gradient Descent"
     ]
 
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
+
     # Opens Inspect Elements
     auto.hotkey('ctrl', 'shift', 'i')
     time.sleep(inspect_element_delay)
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
     # This is the bring back focus to the browser from inspect elements
     auto.hotkey('alt')
 
     # Loop to automate a series of actions
     for i in range(0, total_searches):
+        # To check whether the browser has lost focus or not.
+        check_focus(required_window_id)
         if i == total_searches // 2:
             # Toggles device mode
             auto.hotkey('ctrl', 'shift', 'i')
@@ -148,16 +185,25 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         auto.press("enter")  # Press the "enter" key
         time.sleep(search_delay)  # Pause for the specified search delay
 
-    # To go to the Rewards site.
-    auto.hotkey('ctrl', 'l')
-    auto.typewrite("https://rewards.bing.com/")
-    auto.press("enter")
+    # To check whether the browser has lost focus or not.
+    check_focus(required_window_id)
+    if browser_close_var:
+        close_browser()
+    else:
+        # To go to the Rewards site.
+        auto.hotkey('ctrl', 'l')
+        auto.typewrite("https://rewards.bing.com/")
+        auto.press("enter")
 
-    # Closes Inspect Elements
-    auto.hotkey('ctrl', 'shift', 'i')
+        # Closes Inspect Elements
+        auto.hotkey('ctrl', 'shift', 'i')
 
     # Re-enable Start Button
     start_button['state'] = 'enabled'
+
+    # Disable Browser Close Check box
+    browser_close_checkbox.config(state="enabled")
+
 
 # Run the Tkinter main loop
 root.mainloop()

@@ -2,30 +2,25 @@
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and Mobile)
 
 
+# Note
+Before starting, make sure the delays correspond to the time it takes to perform specific actions on your PC. <Br> <Br>
+![Resources/Image/Delay_ScreenShot.png](Resources/Image/Delay_ScreenShot.png) <Br> <Br>
 
-# Important
-⚠️ To ensure that this works, the browser window should be open in full screen. If it isn't in full screen, please maximize it. <Br>
-⚠️ Your Edge browser should be located at the following path: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe". <Br>
-This path is the default for most PCs, so it should not be a problem. If it is not located there, you can edit the code accordingly. <Br>
-
-## Note
-If your pc takes time to respond or the network is slow you can always change the wait time accordingly. <Br>
 ⚠️ Don't use the PC while the program is running. <Br> 
-⚠️ You might have a difficult time stopping the program mid-way. Don't worry about it. It'll soon stop <Br>
+⚠️ You can stop the program by changing the active window. <Br>
 ⚠️ This code is provided for educational purposes only. <Br>
 It serves as a demonstration of automating repetitive tasks using Python and tkinter. <Br>
 Please use this code responsibly and in accordance with applicable laws and guidelines. <Br>
 The author and contributors are not responsible for any misuse of this code. <Br>
 Feel free to modify and distribute it while adhering to the license terms. <Br> <Br>
 
-### Thank you <3
+
+You can see the releases from here: https://github.com/StDensity/Microsoft-Rewards-Automation/releases
+
+# Thank you <3
+
 
 Any improvements or bugs, let me know. <Br>
 If you are new and don't know how to use it. let me know. <Br> <Br>
 Good Day :)
-
-
-
-
-
 
