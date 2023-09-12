@@ -120,7 +120,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # path_file = open('path.txt', 'r')
     # browser_path = path_file.read()
 
-    path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge1.exe"
+    path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
     # An exception is raised if the browser is not found.
     try:
