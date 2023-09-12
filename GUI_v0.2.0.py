@@ -36,6 +36,12 @@ def start_search():
     # Call the execute_search function
     execute_search(total_searches, browser_open_delay, inspect_element_delay, search_delay)
 
+    # Re-enable Start Button
+    start_button['state'] = 'enabled'
+
+    # Disable Browser Close Check box
+    browser_close_checkbox.config(state="enabled")
+
 
 # Function to close the application
 def close_app():
@@ -114,10 +120,18 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # path_file = open('path.txt', 'r')
     # browser_path = path_file.read()
 
-    path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+    path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge1.exe"
 
-    # Open Microsoft Edge Canary using the specified shortcut
-    os.startfile(path)
+    # An exception is raised if the browser is not found.
+    try:
+        # Open Microsoft Edge Canary using the specified shortcut
+        os.startfile(path)
+    except FileNotFoundError as e:
+        show_alert("Browser Not Found", "Please ensure that edge is installed in: \n" + path)
+        return
+    except Exception as e:
+        show_alert("Error", "An error occurred while opening the browser. Error code: " + str(e))
+
 
     # Pause the script execution for the specified browser open delay
     time.sleep(browser_open_delay)
@@ -198,11 +212,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         # Closes Inspect Elements
         auto.hotkey('ctrl', 'shift', 'i')
 
-    # Re-enable Start Button
-    start_button['state'] = 'enabled'
 
-    # Disable Browser Close Check box
-    browser_close_checkbox.config(state="enabled")
 
 
 # Run the Tkinter main loop
