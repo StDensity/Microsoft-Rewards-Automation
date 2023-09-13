@@ -5,7 +5,7 @@ import pyautogui as auto
 import time
 import random
 import os
-import pygetwindow as gw
+import ctypes
 
 # Create the main application window
 root = tk.Tk()
@@ -48,18 +48,19 @@ def close_app():
     root.destroy()
     exit(0)
 
+
 def close_browser():
     # ctrl + shift + w closes the active browser window
     auto.hotkey('ctrl', 'shift', 'w')
+
 
 def show_alert(title, message):
     messagebox.showinfo(title, message)
 
 
-def check_focus(required_window_id):
-    active_window_list_2 = gw.getWindowsWithTitle(gw.getActiveWindow().title)
-    current_browser = active_window_list_2[0]._hWnd
-    if required_window_id != current_browser:
+def check_focus(required_browser_id):
+    current_window = ctypes.windll.user32.GetForegroundWindow()
+    if required_browser_id != current_window:
         show_alert("Error", "Browser focus lost. Exit(0)")
         exit(0)
 
@@ -132,13 +133,11 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     except Exception as e:
         show_alert("Error", "An error occurred while opening the browser. Error code: " + str(e))
 
-
     # Pause the script execution for the specified browser open delay
     time.sleep(browser_open_delay)
 
-    # Getting the ID of the active window.
-    active_window_list = gw.getWindowsWithTitle(gw.getActiveWindow().title)
-    required_window_id = active_window_list[0]._hWnd
+    # Getting the ID of the active window, it should be a browser.
+    required_browser_id = ctypes.windll.user32.GetForegroundWindow()
 
     # Define a list of prefixes to be used in generating questions
     prefix = [
@@ -167,20 +166,20 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     ]
 
     # To check whether the browser has lost focus or not.
-    check_focus(required_window_id)
+    check_focus(required_browser_id)
 
     # Opens Inspect Elements
     auto.hotkey('ctrl', 'shift', 'i')
     time.sleep(inspect_element_delay)
     # To check whether the browser has lost focus or not.
-    check_focus(required_window_id)
+    check_focus(required_browser_id)
     # This is the bring back focus to the browser from inspect elements
     auto.hotkey('alt')
 
     # Loop to automate a series of actions
     for i in range(0, total_searches):
         # To check whether the browser has lost focus or not.
-        check_focus(required_window_id)
+        check_focus(required_browser_id)
         if i == total_searches // 2:
             # Toggles device mode
             auto.hotkey('ctrl', 'shift', 'i')
@@ -200,7 +199,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         time.sleep(search_delay)  # Pause for the specified search delay
 
     # To check whether the browser has lost focus or not.
-    check_focus(required_window_id)
+    check_focus(required_browser_id)
     if browser_close_var:
         close_browser()
     else:
@@ -211,8 +210,6 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
 
         # Closes Inspect Elements
         auto.hotkey('ctrl', 'shift', 'i')
-
-
 
 
 # Run the Tkinter main loop
