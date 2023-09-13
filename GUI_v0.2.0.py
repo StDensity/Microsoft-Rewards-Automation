@@ -200,7 +200,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
 
     # To check whether the browser has lost focus or not.
     check_focus(required_browser_id)
-    if browser_close_var:
+    if browser_close_var.get():  # We need to use .get() here to get the checkbox true value.
         close_browser()
     else:
         # To go to the Rewards site.
