@@ -1,6 +1,7 @@
 # Microsoft-Rewards-Automation
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and Mobile)
 
+# Warning - Do not claim the rewards as soon as you reach it. Atleast for one week do normal searching(it's my guess), else you can be temp banned. 
 
 # Note
 Before starting, make sure the delays correspond to the time it takes to perform specific actions on your PC. <Br> <Br>
