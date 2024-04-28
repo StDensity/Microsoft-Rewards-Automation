@@ -1,10 +1,10 @@
 # Microsoft-Rewards-Automation
-A program to automate web searches for quick Microsoft Rewards completion. (Both PC and Mobile)
+A program to automate web searches for quick Microsoft Rewards completion. (Both PC and ~Mobile~)
 
 # Warning ⚠️
 - Do not claim the rewards as soon as you reach them. At least for one week, continue with normal searching (this is my guess). Otherwise, you may risk a temporary ban.
 -  Microsoft has been banning people who use VPNs to earn rewards from different countries, so be cautious. Also, do not use this method all day; **only use it on days when you feel lazy or when you don't have much time left**.
--  Feel free to suggest ways to circumvent this.
+-  Feel free to suggest ways to improve this.
 
 
 # Note
