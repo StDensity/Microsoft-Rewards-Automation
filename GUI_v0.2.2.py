@@ -69,7 +69,7 @@ def check_focus(required_browser_id):
 browser_open_delay = 5
 inspect_element_delay = 5
 search_delay = 2
-total_searches = 70  # Initialize total_searches variable
+total_searches = 35  # Initialize total_searches variable
 
 # Create and configure entry fields for delay values
 browser_open_delay_label = ttk.Label(frame, text="Browser Open Delay:")
@@ -169,8 +169,8 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     check_focus(required_browser_id)
 
     # Opens Inspect Elements
-    auto.hotkey('ctrl', 'shift', 'i')
-    time.sleep(inspect_element_delay)
+    # auto.hotkey('ctrl', 'shift', 'i')
+    # time.sleep(inspect_element_delay)
     # To check whether the browser has lost focus or not.
     check_focus(required_browser_id)
     # This is the bring back focus to the browser from inspect elements
@@ -180,17 +180,17 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     for i in range(0, total_searches):
         # To check whether the browser has lost focus or not.
         check_focus(required_browser_id)
-        if i == total_searches // 2:
-            # Toggles device mode
-            auto.hotkey('ctrl', 'shift', 'i')
-            time.sleep(inspect_element_delay)
-            auto.hotkey('ctrl', 'shift', 'i')
-            time.sleep(inspect_element_delay)
-            auto.hotkey('ctrl', 'shift', 'm')
-            time.sleep(inspect_element_delay)
-            # This is the bring back focus to the browser from inspect elements
-            auto.hotkey('alt')
-        # To bring focus to the search bar.
+        # if i == total_searches // 2:
+        #     # Toggles device mode
+        #     auto.hotkey('ctrl', 'shift', 'i')
+        #     time.sleep(inspect_element_delay)
+        #     auto.hotkey('ctrl', 'shift', 'i')
+        #     time.sleep(inspect_element_delay)
+        #     auto.hotkey('ctrl', 'shift', 'm')
+        #     time.sleep(inspect_element_delay)
+        #     # This is the bring back focus to the browser from inspect elements
+        #     auto.hotkey('alt')
+        # # To bring focus to the search bar.
         auto.hotkey('ctrl', 'l')
 
         # Generate a random question by choosing a random prefix and word
@@ -209,7 +209,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
         auto.press("enter")
 
         # Closes Inspect Elements
-        auto.hotkey('ctrl', 'shift', 'i')
+        # auto.hotkey('ctrl', 'shift', 'i')
 
 
 # Run the Tkinter main loop
