@@ -1,0 +1,39 @@
+  {
+    "prefix": [
+        "What is", "Define", "Explain", "Meaning of",
+        "WOverview of RNN",
+        "hat are", "Characteristics of", "Importance of", "Advantages of",
+        "Disadvantages of", "Types of", "Function of", "History of", "Principles of",
+        "Components of", "Role of", "Purpose of", "Benefits of", "Concept of",
+        "Process of", "Techniques of", "Applications of", "Definition of", "Theory of",
+        "Overview of", "Challenges of", "Significance of", "Structure of", "Scope of",
+        "Framework of", "Objectives of", "Methods of", "Features of", "Classification of"
+    ],
+    "search_terms": [
+        "AI", "ANN", "CNN", "RNN", "NLP", "GAN", "SVM", "PCA",
+        "IoT", "AIOps", "RL", "ELMo", "BERT", "LSTM", "GRU",
+        "K-means", "FNN", "Transfer Learning", "AutoML",
+        "Hyperparameter Optimization", "Reinforcement Learning",
+        "Deep Learning", "Regression Analysis", "Clustering",
+        "Dimensionality Reduction", "Backpropagation", "Over fitting",
+        "Under fitting", "Cross-Validation", "Natural Language Generation",
+        "Supervised Learning", "Unsupervised Learning", "Neural Network Architecture",
+        "Bias-Variance Tradeoff", "Feature Engineering", "Convolutional Neural Network",
+        "Recurrent Neural Network", "Random Forest", "Gradient Descent", "Anatomy","Physiology","Pharmacology","Pathology","Immunology",
+        "Microbiology","Biochemistry","Genetics","Epidemiology","Medical Imaging",
+        "Surgery","Internal Medicine","Pediatrics","Obstetrics and Gynecology","Psychiatry",
+        "Neurology","Cardiology","Oncology","Infectious Diseases","Public Health", "Space Exploration",
+        "Rocket Propulsion","Satellite Technology","Orbital Mechanics","Space Telescopes",
+        "Planetary Science","Astronomical Observations","Space Missions","Space Weather","Space Debris",
+        "Space Colonization","Space Tourism","Interplanetary Travel","Exoplanet Discovery","Space Agencies (NASA, ESA, SpaceX, etc.)",
+        "Space Law and Policy","Space Communication","Space Manufacturing","Space Agriculture","Space Medicine",
+        "Political Science","Government Systems","International Relations","Political Philosophy","Political Economy",
+        "Public Policy","Political Ideologies","Political Behavior","Political Communication","Political Psychology",
+        "Comparative Politics","Public Administration","Election Systems","Legislative Processes","Executive Branch",
+        "Judicial Systems","Constitutional Law","Human Rights","Civil Liberties","Democracy and Governance",
+        "Economic Theory","Microeconomics","Macroeconomics","International Economics","Development Economics",
+        "Behavioral Economics","Game Theory","Labor Economics","Monetary Economics","Public Economics",
+        "Environmental Economics","Health Economics","Industrial Organization","Financial Economics","Econometrics",
+        "Economic Growth","Income Inequality","Poverty Alleviation","Trade Theory","Fiscal Policy"
+    ]
+  }

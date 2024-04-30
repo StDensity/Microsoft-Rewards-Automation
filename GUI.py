@@ -174,7 +174,7 @@ def execute_search(total_searches, browser_open_delay, inspect_element_delay, se
     # To check whether the browser has lost focus or not.
     check_focus(required_browser_id)
     # This is the bring back focus to the browser from inspect elements
-    auto.hotkey('alt')
+    # auto.hotkey('alt')
 
     # Loop to automate a series of actions
     for i in range(0, total_searches):

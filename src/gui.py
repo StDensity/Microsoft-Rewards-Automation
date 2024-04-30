@@ -2,19 +2,22 @@ import tkinter as tk
 from tkinter import ttk
 import configparser
 from AutoSearch import AutoSearch
+from tkinter import messagebox
+
 
 class Gui(tk.Tk):
     def __init__(self, width, height):
         super().__init__()
+        self.reset_config_button = None
         self.title("Auto Search Tool")
         self.geometry(f"{width}x{height}")
         self.minsize(310, 300)
-
+        self.auto_search = AutoSearch.instance()
         self.total_searches = None
         self.search_delay = None
         self.inspect_element_delay = None
         self.browser_open_delay = None
-        self.browser_close_check_button = None
+        self.browser_close_check_var = None
         self.note_label = None
         self.browser_close_checkbutton = None
         self.close_button = None
@@ -37,10 +40,7 @@ class Gui(tk.Tk):
         self.setup_main_page()
 
         # Setting up default values
-        self.browser_open_delay_entry.insert(0, str(self.browser_open_delay))
-        self.inspect_element_delay_entry.insert(0, str(self.inspect_element_delay))
-        self.search_delay_entry.insert(0, str(self.search_delay))
-        self.total_searches_entry.insert(0, str(self.total_searches))
+        self.update_entry_fields()
 
     def setup_main_page(self):
         frame = ttk.Frame()
@@ -68,24 +68,29 @@ class Gui(tk.Tk):
 
         # Start Button
         self.start_button = ttk.Button(frame, text="Start Search", command=self.start_run)
-        self.start_button.grid(row=4, columnspan=2, pady=10)
+        self.start_button.grid(row=4, column=0, pady=10)
 
         # Close Button
         self.close_button = ttk.Button(frame, text="Close", command=self.close_app)
-        self.close_button.grid(row=5, columnspan=2, pady=10)
+        self.close_button.grid(row=4, column=1, pady=10)
+
+        self.reset_config_button = ttk.Button(frame, text="Reset Config", command=self.reset_config_file)
+        self.reset_config_button.grid(row=5, column=0, pady=10)
+
+        self.reset_config_button = ttk.Button(frame, text="Save Presets", command=self.update_config_file)
+        self.reset_config_button.grid(row=5, column=1, pady=10)
 
         # Check Button
         # It's variable need to be initialized as tkinter IntVar object for proper working.
-        self.browser_close_check_button = tk.IntVar()
+        self.browser_close_check_var = tk.IntVar()
 
         self.browser_close_checkbutton = ttk.Checkbutton(frame, text="Close browser on completion",
-                                                         variable=self.browser_close_check_button)
+                                                         variable=self.browser_close_check_var)
         self.browser_close_checkbutton.grid(row=6, columnspan=2, padx=10)
 
         # Note Label
         self.note_label = ttk.Label(frame, text="Made with ❤")
         self.note_label.grid(row=7, columnspan=2, pady=10)
-
 
     def get_config_data(self):
         config = configparser.ConfigParser()
@@ -106,11 +111,71 @@ class Gui(tk.Tk):
         # Disable Browser Close Check box
         self.browser_close_checkbutton.config(state="disabled")
 
+        self.auto_search.start_search(self)
+        self.start_button['state'] = 'enabled'
+        self.browser_close_checkbutton.config(state="enabled")
+
+
+    @staticmethod
+    def show_alert(title, message):
+        messagebox.showinfo(title, message)
+
     def close_app(self):
         self.destroy()
+        exit(0)
 
     def update_entry_values(self):
         self.browser_open_delay = float(self.browser_open_delay_entry.get())
         self.inspect_element_delay = float(self.inspect_element_delay_entry.get())
         self.search_delay = float(self.search_delay_entry.get())
         self.total_searches = int(self.total_searches_entry.get())
+
+    def update_config_file(self):
+        self.update_entry_values()
+        config = configparser.ConfigParser()
+
+        config.read('../config.ini')
+
+        config['default_values']['browser_open_delay'] = str(self.browser_open_delay)
+        config['default_values']['inspect_element_delay'] = str(self.inspect_element_delay)
+        config['default_values']['search_delay'] = str(self.search_delay)
+        config['default_values']['total_searches'] = str(self.total_searches)
+
+        with open('../config.ini', 'w') as configfile:
+            config.write(configfile)
+
+        self.update_entry_fields()
+
+    def update_entry_fields(self):
+        self.clear_entry_fields()
+        self.get_config_data()
+
+        self.browser_open_delay_entry.insert(0, str(self.browser_open_delay))
+        self.inspect_element_delay_entry.insert(0, str(self.inspect_element_delay))
+        self.search_delay_entry.insert(0, str(self.search_delay))
+        self.total_searches_entry.insert(0, str(self.total_searches))
+
+    def reset_config_file(self):
+        config = configparser.ConfigParser()
+
+        default_values = {
+            'browser_open_delay': str(5.0),
+            'inspect_element_delay': str(5.0),
+            'search_delay': str(2.0),
+            'total_searches': str(35)
+        }
+
+        # Add default values to the config
+        config['default_values'] = default_values
+
+        # Save the changes back to the file
+        with open('../config.ini', 'w') as configfile:
+            config.write(configfile)
+
+        self.update_entry_fields()
+
+    def clear_entry_fields(self):
+        self.browser_open_delay_entry.delete(0, tk.END)
+        self.inspect_element_delay_entry.delete(0, tk.END)
+        self.search_delay_entry.delete(0, tk.END)
+        self.total_searches_entry.delete(0, tk.END)
