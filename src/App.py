@@ -1,6 +1,10 @@
 from AutoSearch import AutoSearch
+from tkinter import messagebox
+
 from gui import Gui
 
-if __name__ == '__main__':
-    Gui(310, 300)
-
+try:
+    if __name__ == '__main__':
+        Gui(310, 300)
+except Exception as e:
+    messagebox.showerror("Error", f"An error occurred {e}")
