@@ -1,27 +1,37 @@
-import configparser
+
+import os
 
 
 class AutoSearch:
     def __init__(self):
-        self.total_searches = None
-        self.search_delay = None
-        self.inspect_element_delay = None
-        self.browser_open_delay = None
-        self.browser_close_check_button = None
-        self.get_config_data()
-
-    def get_config_data(self):
-        config = configparser.ConfigParser()
-        
-        config.read('../config.ini')
-
-        self.browser_open_delay = config.get('default_values', 'browser_open_delay')
-        self.inspect_element_delay = config.get('default_values', 'inspect_element_delay')
-        self.search_delay = config.get('default_values', 'search_delay')
-        self.total_searches = config.get('default_values', 'total_searches')
-
-    def start_search(self):
         pass
 
-    def close_app(self):
+
+
+    def start_run(self, window):
+        self.update_entry_values(window)
+
+        # Disables Start button to prevent multiple clicks.
+        window.start_button['state'] = 'disabled'
+
+        # Disable Browser Close Check box
+        window.browser_close_checkbox.config(state="disabled")
+
+    def do_search(self):
+        path = path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+
+    def update_entry_values(self, window):
+        self.browser_open_delay = float(window.browser_open_delay_entry.get())
+        self.inspect_element_delay = float(window.inspect_element_delay_entry.get())
+        self.search_delay = float(window.search_delay_entry.get())
+        self.total_searches = int(window.total_searches_entry.get())
+
+    def save_config(self):
         pass
+
+    def reset_config(self):
+        pass
+
+    @staticmethod
+    def close_app(window):
+        window.destroy()
