@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import configparser
+from AutoSearch import AutoSearch
 
 class Gui(tk.Tk):
     def __init__(self, width, height):
@@ -96,9 +97,20 @@ class Gui(tk.Tk):
         self.search_delay = config.get('default_values', 'search_delay')
         self.total_searches = config.get('default_values', 'total_searches')
 
-
     def start_run(self):
-        pass
+        self.update_entry_values()
+
+        # Disables Start button to prevent multiple clicks.
+        self.start_button['state'] = 'disabled'
+
+        # Disable Browser Close Check box
+        self.browser_close_checkbutton.config(state="disabled")
 
     def close_app(self):
-        pass
+        self.destroy()
+
+    def update_entry_values(self):
+        self.browser_open_delay = float(self.browser_open_delay_entry.get())
+        self.inspect_element_delay = float(self.inspect_element_delay_entry.get())
+        self.search_delay = float(self.search_delay_entry.get())
+        self.total_searches = int(self.total_searches_entry.get())
