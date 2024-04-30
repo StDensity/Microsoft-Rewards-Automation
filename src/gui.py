@@ -9,7 +9,7 @@ class Gui(tk.Tk):
         self.auto_search = auto_search
         self.title("Auto Search Tool")
         self.geometry(f"{width}x{height}")
-        self.minsize(500, 300)
+        self.minsize(310, 300)
         self.main = None
         self.setup_ui()
 
@@ -29,6 +29,8 @@ class Gui(tk.Tk):
 class Main(ttk.Frame):
     def __init__(self, parent):
         super().__init__()
+        self.note_label = None
+        self.browser_close_checkbutton = None
         self.close_button = None
         self.start_button = None
         self.total_searches_entry = None
@@ -40,10 +42,9 @@ class Main(ttk.Frame):
         self.browser_open_delay_entry = None
         self.browser_open_delay_label = None
         self.auto_search = parent
-        self.setup_entry_fields()
-        self.setup_buttons()
+        self.setup_main_page()
 
-    def setup_entry_fields(self):
+    def setup_main_page(self):
         self.browser_open_delay_label = ttk.Label(self, text="Browser Open Delay:")
         self.browser_open_delay_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         self.browser_open_delay_entry = ttk.Entry(self)
@@ -65,15 +66,22 @@ class Main(ttk.Frame):
         self.total_searches_entry = ttk.Entry(self)
         self.total_searches_entry.grid(row=3, column=1, padx=5, pady=5)
 
-    def setup_buttons(self):
         # Start Button
         self.start_button = ttk.Button(self, text="Start Search", command=self.auto_search.start_search)
         self.start_button.grid(row=4, columnspan=2, pady=10)
 
         # Close Button
+
         self.close_button = ttk.Button(self, text="Close", command=self.auto_search.close_app)
         self.close_button.grid(row=5, columnspan=2, pady=10)
 
+        # Check Button
+        # It's variable need to be initialized as tkinter IntVar object for proper working.
+        self.auto_search.browser_close_check_button = tk.IntVar()
 
-
-
+        self.browser_close_checkbutton = ttk.Checkbutton(self, text="Close browser on completion", variable=self.auto_search.browser_close_check_button)
+        self.browser_close_checkbutton.grid(row=6, columnspan=2, padx=10)
+    
+        # Note Label
+        self.note_label = ttk.Label(self, text="Made with ❤")
+        self.note_label.grid(row=7, columnspan=2, pady=10)

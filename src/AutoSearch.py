@@ -7,7 +7,7 @@ class AutoSearch:
         self.search_delay = None
         self.inspect_element_delay = None
         self.browser_open_delay = None
-
+        self.browser_close_check_button = None
         self.get_config_data()
 
     def get_config_data(self):
