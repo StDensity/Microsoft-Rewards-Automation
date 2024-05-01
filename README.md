@@ -10,6 +10,17 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 -  Feel free to suggest ways to improve this.
 
 
+# Instructions
+
+1. Install Python if not already installed. If you're not tech-savvy? Use Reward Automation_legacy.zip (older version).
+2. Clone this repository:
+   - Go to the code section and click "Download ZIP."
+3. Open the folder in an IDE.
+4. In the IDE terminal, run `pip install -r requirements.txt`.
+5. Navigate to src/App.py and execute it.
+
+
+
 # Note
 Before starting, make sure the delays correspond to the time it takes to perform specific actions on your PC. <Br> <Br>
 ![Resources/Image/Delay_ScreenShot.png](Resources/Image/Delay_ScreenShot.png) <Br> <Br>
