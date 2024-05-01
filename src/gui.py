@@ -3,7 +3,7 @@ from tkinter import ttk
 import configparser
 from AutoSearch import AutoSearch
 from tkinter import messagebox
-
+from Utils import resource_path
 
 class Gui(tk.Tk):
     def __init__(self, width, height):
@@ -30,6 +30,7 @@ class Gui(tk.Tk):
         self.inspect_element_delay_label = None
         self.browser_open_delay_entry = None
         self.browser_open_delay_label = None
+        self.config_path = resource_path('assets/config.ini')
 
         self.get_config_data()
         self.setup_ui()
@@ -95,7 +96,7 @@ class Gui(tk.Tk):
     def get_config_data(self):
         config = configparser.ConfigParser()
 
-        config.read('../config.ini')
+        config.read(self.config_path)
 
         self.browser_open_delay = config.get('default_values', 'browser_open_delay')
         self.inspect_element_delay = config.get('default_values', 'inspect_element_delay')
@@ -134,14 +135,14 @@ class Gui(tk.Tk):
         self.update_entry_values()
         config = configparser.ConfigParser()
 
-        config.read('../config.ini')
+        config.read(self.config_path)
 
         config['default_values']['browser_open_delay'] = str(self.browser_open_delay)
         config['default_values']['inspect_element_delay'] = str(self.inspect_element_delay)
         config['default_values']['search_delay'] = str(self.search_delay)
         config['default_values']['total_searches'] = str(self.total_searches)
 
-        with open('../config.ini', 'w') as configfile:
+        with open(self.config_path, 'w') as configfile:
             config.write(configfile)
 
         self.update_entry_fields()
@@ -169,7 +170,7 @@ class Gui(tk.Tk):
         config['default_values'] = default_values
 
         # Save the changes back to the file
-        with open('../config.ini', 'w') as configfile:
+        with open(self.config_path, 'w') as configfile:
             config.write(configfile)
 
         self.update_entry_fields()

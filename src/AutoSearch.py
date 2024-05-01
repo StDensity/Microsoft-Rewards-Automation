@@ -5,6 +5,7 @@ import ctypes
 import json
 import pyautogui as auto
 import random
+from Utils import resource_path
 
 
 @Singleton
@@ -14,6 +15,8 @@ class AutoSearch:
         self.prefix = None
         self.root = None
         self.required_browser_id = None
+        self.search_key_path = resource_path('assets/search_keys.json')
+        print(self.search_key_path)
 
     def start_search(self, root):
         self.root = root
@@ -63,10 +66,8 @@ class AutoSearch:
             auto.typewrite("https://rewards.bing.com/")
             auto.press("enter")
 
-    @staticmethod
-    def load_search_keys():
-
-        with open('../Resources/search_keys.json', 'r') as f:
+    def load_search_keys(self):
+        with open(self.search_key_path, 'r') as f:
             data = json.load(f)
 
         return data
