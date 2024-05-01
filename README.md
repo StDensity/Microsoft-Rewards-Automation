@@ -12,7 +12,7 @@ A program to automate web searches for quick Microsoft Rewards completion. (Both
 
 # Instructions
 
-1. Install Python if not already installed. If you're not tech-savvy? Use Reward Automation_legacy.zip (older version).
+1. Install Python if not already installed. Not tech-savvy? Use Reward Automation_legacy.zip (older version).
 2. Clone this repository:
    - Go to the code section and click "Download ZIP."
 3. Open the folder in an IDE.
