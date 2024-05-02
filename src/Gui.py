@@ -4,6 +4,7 @@ import configparser
 from AutoSearch import AutoSearch
 from tkinter import messagebox
 from Utils import resource_path
+import threading
 
 class Gui(tk.Tk):
     def __init__(self, width, height):
@@ -70,7 +71,8 @@ class Gui(tk.Tk):
         self.total_searches_entry.grid(row=3, column=1, padx=5, pady=5)
 
         # Start Button
-        self.start_button = ttk.Button(frame, text="Start Search", command=self.start_run)
+        # Deamon=True -> Daemon threads automatically terminate when the main thread (Tkinter's main loop) exits
+        self.start_button = ttk.Button(frame, text="Start Search", command=lambda: threading.Thread(target=self.start_run, daemon=True).start())
         self.start_button.grid(row=4, column=0, pady=10)
 
         # Close Button
