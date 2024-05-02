@@ -45,16 +45,42 @@ class AutoSearch:
 
         self.search_loop()
 
+    @staticmethod
+    def simulate_typing(prefix, search_item):
+        for letter in prefix:
+            auto.typewrite(letter)
+            time.sleep(0.001)  # Sleep for a millisecond
+
+        auto.typewrite(" ")  # Type a space
+
+        for letter in search_item:
+            auto.typewrite(letter)
+            time.sleep(0.001)  # Sleep for a millisecond
+            if random.random() < 0.1:  # Adjust the probability as needed
+                if random.random() < 0.5:  # Adjust the probability of making a mistake
+                    auto.press("backspace")
+                    time.sleep(0.001)  # Sleep for a millisecond
+                    auto.typewrite(random.choice("abcdefghijklmnopqrstuvwxyz"))
+                    time.sleep(0.001)  # Sleep for a millisecond
+                else:
+                    auto.press("backspace")
+                    time.sleep(0.001)  # Sleep for a millisecond
+                    auto.typewrite(letter)
+                    time.sleep(0.001)  # Sleep for a millisecond
+
+        auto.press("enter")
+
     def search_loop(self):
         for i in range(0, self.root.total_searches):
             self.check_focus()
             auto.hotkey('ctrl', 'l')
 
+            self.simulate_typing(random.choice(self.prefix), random.choice(self.search_terms))
             # Generate a random question by choosing a random prefix and search_terms
-            auto.typewrite(random.choice(self.prefix) + " ")
-            time.sleep(1)
-            auto.typewrite(random.choice(self.search_terms))
-            auto.press("enter")  # Press the "enter" key
+            # auto.typewrite(random.choice(self.prefix) + " ")
+            # time.sleep(random.uniform(0, 2))
+            # auto.typewrite(random.choice(self.search_terms))
+            # auto.press("enter")  # Press the "enter" key
             time.sleep(self.root.search_delay)  # Pause for the specified search delay
 
         self.check_focus()
