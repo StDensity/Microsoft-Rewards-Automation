@@ -3,6 +3,9 @@
 
 # Microsoft-Rewards-Automation
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and ~Mobile~)
+It is also able to simulate human typing.
+
+
 
 
 # Instructions
