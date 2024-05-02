@@ -17,6 +17,7 @@ It is also able to simulate human typing.
 4. In the IDE terminal, run `pip install -r requirements.txt`.
 5. Navigate to src/App.py and execute it.
 
+![Resources/Image/Gui.png](Resources/Image/Gui.png) <Br><Br>
 
 
 # Note

@@ -1,7 +1,7 @@
 from AutoSearch import AutoSearch
 from tkinter import messagebox
 
-from gui import Gui
+from Gui import Gui
 
 try:
     if __name__ == '__main__':
