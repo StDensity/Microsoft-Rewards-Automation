@@ -8,6 +8,8 @@ from Utils import resource_path
 class Gui(tk.Tk):
     def __init__(self, width, height):
         super().__init__()
+        self.simulate_human_checkbutton = None
+        self.simulate_human_check_var = None
         self.reset_config_button = None
         self.title("Auto Search Tool")
         self.geometry(f"{width}x{height}")
@@ -82,16 +84,25 @@ class Gui(tk.Tk):
         self.reset_config_button.grid(row=5, column=1, pady=10)
 
         # Check Button
+
+        # simulate human checkbutton
+        self.simulate_human_check_var = tk.IntVar()
+
+        self.simulate_human_checkbutton = ttk.Checkbutton(frame, text="Simulate human typing",
+                                                         variable=self.simulate_human_check_var)
+        self.simulate_human_checkbutton.grid(row=6, columnspan=2, padx=10)
+
         # It's variable need to be initialized as tkinter IntVar object for proper working.
         self.browser_close_check_var = tk.IntVar()
 
         self.browser_close_checkbutton = ttk.Checkbutton(frame, text="Close browser on completion",
                                                          variable=self.browser_close_check_var)
-        self.browser_close_checkbutton.grid(row=6, columnspan=2, padx=10)
+        self.browser_close_checkbutton.grid(row=7, columnspan=2, padx=10)
+
 
         # Note Label
         self.note_label = ttk.Label(frame, text="Made with ❤")
-        self.note_label.grid(row=7, columnspan=2, pady=10)
+        self.note_label.grid(row=8, columnspan=2, pady=10)
 
     def get_config_data(self):
         config = configparser.ConfigParser()

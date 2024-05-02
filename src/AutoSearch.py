@@ -45,15 +45,16 @@ class AutoSearch:
 
         self.search_loop()
 
-    @staticmethod
-    def simulate_typing(prefix, search_item):
+    def simulate_typing(self, prefix, search_item):
         for letter in prefix:
             auto.typewrite(letter)
             time.sleep(0.001)  # Sleep for a millisecond
+            self.check_focus()
 
         auto.typewrite(" ")  # Type a space
 
         for letter in search_item:
+            self.check_focus()
             auto.typewrite(letter)
             time.sleep(0.001)  # Sleep for a millisecond
             if random.random() < 0.1:  # Adjust the probability as needed
@@ -75,13 +76,15 @@ class AutoSearch:
             self.check_focus()
             auto.hotkey('ctrl', 'l')
 
-            self.simulate_typing(random.choice(self.prefix), random.choice(self.search_terms))
-            # Generate a random question by choosing a random prefix and search_terms
-            # auto.typewrite(random.choice(self.prefix) + " ")
-            # time.sleep(random.uniform(0, 2))
-            # auto.typewrite(random.choice(self.search_terms))
-            # auto.press("enter")  # Press the "enter" key
-            time.sleep(self.root.search_delay)  # Pause for the specified search delay
+            if self.root.simulate_human_check_var.get():
+                self.simulate_typing(random.choice(self.prefix), random.choice(self.search_terms))
+            else:
+                # Generate a random question by choosing a random prefix and search_terms
+                auto.typewrite(random.choice(self.prefix) + " ")
+                time.sleep(random.uniform(0, 2))
+                auto.typewrite(random.choice(self.search_terms))
+                auto.press("enter")  # Press the "enter" key
+            time.sleep(random.uniform(0.1, self.root.search_delay))  # Pause for the specified search delay
 
         self.check_focus()
         if self.root.browser_close_check_var.get():  # We need to use .get() here to get the checkbox true value.
