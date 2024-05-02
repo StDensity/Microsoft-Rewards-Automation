@@ -13,7 +13,7 @@ class Gui(tk.Tk):
         self.reset_config_button = None
         self.title("Auto Search Tool")
         self.geometry(f"{width}x{height}")
-        self.minsize(310, 300)
+        self.minsize(310, 320)
         self.auto_search = AutoSearch.instance()
         self.total_searches = None
         self.search_delay = None
