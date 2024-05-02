@@ -10,7 +10,7 @@ It is also able to simulate human typing.
 
 # Instructions
 
-1. Install Python if not already installed. Not tech-savvy? Use Reward Automation_legacy.zip (older version).
+1. Install Python if not already installed. Not tech-savvy? Just extract and run `App.exe` from `App.zip`.
 2. Clone this repository:
    - Go to the code section and click "Download ZIP."
 3. Open the folder in an IDE.
