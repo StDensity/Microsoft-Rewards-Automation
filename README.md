@@ -1,5 +1,5 @@
 # Status 
-🟢 Working
+🟡 I haven't used it in a while, So I don't know.
 
 # Microsoft-Rewards-Automation
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and ~Mobile~)
