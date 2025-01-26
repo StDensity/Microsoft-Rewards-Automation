@@ -1,5 +1,5 @@
 # Status
-🟢 It's still working for a person I know. I haven't used it in a while, So I don't know. 
+🟡 It's still working. Don't use it frequently, just use it on days you can't do it manually.
 
 # Microsoft-Rewards-Automation
 A program to automate web searches for quick Microsoft Rewards completion. (Both PC and ~Mobile~)
